@@ -36,3 +36,4 @@ exports.findByMonth = function(month, year) {
 exports.createMemory = function(memory) {
     return Memory.create(memory)
 }
+
