@@ -32,3 +32,7 @@ const Memory = mongoose.model("Memory", memorySchema, "memories");
 exports.findByMonth = function(month, year) {
     return Memory.find({ month: month, year: year })
 }
+
+exports.createMemory = function(memory) {
+    return Memory.create(memory)
+}
