@@ -14,13 +14,15 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.set("view engine", "ejs");
 server.use(express.static("public"));
-server.use("/", authRoutes)
 
 server.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
+
+server.use("/", authRoutes)
+
 
 async function connectDB() {
     try {

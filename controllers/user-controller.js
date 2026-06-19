@@ -11,7 +11,7 @@ exports.showRegister = (req,res) => {
 }
 
 exports.showLogin = (req,res) => {
-    res.render("login")
+    res.render("login", {error: ""})
 }
 
 exports.register = async (req,res) => {
