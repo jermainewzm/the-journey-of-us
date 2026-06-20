@@ -30,7 +30,7 @@ const memorySchema = new mongoose.Schema({
 const Memory = mongoose.model("Memory", memorySchema, "memories");
 
 exports.findByMonth = function(month, year) {
-    return Memory.find({ month: month, year: year })
+    return Memory.find({ month: month, year: year }).sort({ date: 1 })
 }
 
 exports.createMemory = function(memory) {
