@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body style="background-color: #f8f9fa;"> 
+    <div id="app">
+        <div v-if="currentView === 'add'">
+            <div class="container d-flex justify-content-center mt-5">
+            <div class="card rounded-4 shadow-lg py-3" style="width: 75%">
+                <div class="card-body p-4 text-center">
+                    <form @submit.prevent="addMemory">
+                        <input class="form-control mb-3" type="text" v-model="newTitle" placeholder="New Title">
+                        <textarea class="form-control" v-model="newDescription" placeholder="Description"></textarea>
+                        
+                    </form>
+
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-else="currentView === 'main'">
+        <nav class="navbar navbar-dark d-flex justify-content-center py-3 shadow-sm navbar-love">
+        <div class="d-flex align-items-center gap-2">
+            <div class="navbar-brand text-white fw-bold fs-3"> Welcome! Click any button to start!💝</div>
+        </div>
+        <div class="d-flex flex-wrap align-itme-center justify-content-center gap-2">
+            <button class="btn btn-outline-light fw-bold rounded-pill" v-for="m in months" @click="loadMonth(m.month, m.year)">
+            {{m.label}}
+        </button>
+        <% if (username === "jermy") { %>
+        <button class="btn btn-outline-light fw-bold rounded-pill" @click="currentView = 'add'">➕ Add Memory</button>
+        <% } %>
+</div>
+        </div>
+    </nav>
+    </div>
+    <script>
+        const app = Vue.createApp({
+             data () { 
+                return {
+                    months: [{ month: 11, year: 2025, label: "Nov 25" },
+                            { month: 12, year: 2025, label: "Dec 25" },
+                            { month: 1, year: 2026, label: "Jan 26" },
+                            { month: 2, year: 2026, label: "Feb 26" },
+                            { month: 3, year: 2026, label: "Mar 26" },
+                            { month: 4, year: 2026, label: "Apr 26" },
+                            { month: 5, year: 2026, label: "May 26" },
+                            { month: 6, year: 2026, label: "Jun 26" }
+                            ],
+                    currentView: "main",
+                    memories: []
+                    }
+                },
+            methods: {
+
+
+            }
+        })
+        app.mount("#app")
+    </script>
+
+</body>
+
+</html>

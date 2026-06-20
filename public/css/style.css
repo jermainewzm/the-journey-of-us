@@ -5,3 +5,16 @@
 .card-title {
     color: #4a4a4a;
 }
+
+.navbar-love .btn-outline-light {
+    color: #fff0f3;
+    border-color: #fff0f3;
+}
+.navbar-love .btn-outline-light:hover {
+    background-color: #fff0f3;
+    color: #c2185b;
+}
+
+.navbar-love .navbar-brand {
+    color: #6b0f2b;
+}
