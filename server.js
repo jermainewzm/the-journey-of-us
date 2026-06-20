@@ -4,6 +4,7 @@ const session = require("express-session");
 const dotenv = require("dotenv");
 
 const authRoutes = require("./routes/auth-routes")
+const memoryRoutes = require("./routes/memory-routes")
 
 dotenv.config({ path: "./config.env" });
 
@@ -22,7 +23,7 @@ server.use(session({
 }));
 
 server.use("/", authRoutes)
-
+server.use("/", memoryRoutes)
 
 async function connectDB() {
     try {
