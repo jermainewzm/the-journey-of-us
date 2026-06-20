@@ -15,19 +15,20 @@
                 <div class="card-body p-4 text-center">
                     <form @submit.prevent="addMemory">
                         <input class="form-control mb-3" type="text" v-model="newTitle" placeholder="New Title">
-                        <textarea class="form-control" v-model="newDescription" placeholder="Description"></textarea>
-                        
+                        <textarea class="form-control mb-3" v-model="newDescription" placeholder="Description"></textarea>
+                        <input class="form-control mb-3" type="date" v-model="newDate" placeholder="Date">
+                        <input class="form-control mb-3" type="text" v-model="newImageUrl" placeholder="URL">
+                        <button class="btn btn-outline-danger shadow-lg"> Submit</button>
                     </form>
-
                 </div>
                 </div>
             </div>
         </div>
 
-        <div v-else="currentView === 'main'">
+        <div v-else>
         <nav class="navbar navbar-dark d-flex justify-content-center py-3 shadow-sm navbar-love">
         <div class="d-flex align-items-center gap-2">
-            <div class="navbar-brand text-white fw-bold fs-3"> Welcome! Click any button to start!💝</div>
+            <div class="navbar-brand text-white fw-bold fs-3"> Welcome! Click any button to view our memories!💝</div>
         </div>
         <div class="d-flex flex-wrap align-itme-center justify-content-center gap-2">
             <button class="btn btn-outline-light fw-bold rounded-pill" v-for="m in months" @click="loadMonth(m.month, m.year)">
@@ -39,6 +40,21 @@
 </div>
         </div>
     </nav>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-6" v-for="memory in memories">
+                <div class="card shadow-sm">
+                    <img :src ="memory.imageUrl" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title"> {{memory.title}}</h5>
+                        <p class="card-text">{{ memory.description }}</p>
+                        <p class="text-muted">{{ new Date(memory.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </div>
     <script>
         const app = Vue.createApp({
@@ -54,12 +70,38 @@
                             { month: 6, year: 2026, label: "Jun 26" }
                             ],
                     currentView: "main",
-                    memories: []
+                    memories: [],
+                    newTitle: "",
+                    newDescription: "",
+                    newDate: "",
+                    newImageUrl: "",
+                    message: ""
                     }
                 },
             methods: {
+                async addMemory () {
+                    const response = await fetch("/memories", {
+                        method:"POST",
+                        headers : {"Content-Type": "application/json"},
+                        body: JSON.stringify({title: this.newTitle, description: this.newDescription,
+                                            date: this.newDate, imageUrl: this.newImageUrl
+                        })
+                    })
 
+                    const data = await response.json()
+                    this.message = data.message
+                    this.newTitle = ""
+                    this.newDescription = ""
+                    this.newDate = ""
+                    this.newImageUrl = ""
+                    this.currentView = "main"
+                },
+                async loadMonth(month, year) {
+                    const response = await fetch(`/memories?month=${month}&year=${year}`)
+                    const data = await response.json()
+                    this.memories = data.memories
 
+                }
             }
         })
         app.mount("#app")
