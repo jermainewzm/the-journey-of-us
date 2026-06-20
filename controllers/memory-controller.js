@@ -2,7 +2,7 @@
 const Memory = require("../models/memory-model")
 
 exports.showDashboard = (req,res) => {
-    return res.render("dashboard")
+    return res.render("dashboard", {username: req.session.user.username})
 }
 
 exports.addMemory = async (req,res) => {
