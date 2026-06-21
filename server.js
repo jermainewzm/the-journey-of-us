@@ -36,11 +36,10 @@ async function connectDB() {
 }
 
 function startServer() {
-    const hostname = "localhost";
-    const port = 8000;
+    const hostname = "0.0.0.0"
+    const port = process.env.PORT || 8000
     server.listen(port, hostname, () => {
-        console.log(`Server running at http://${hostname}:${port}/`);
-    });
+        console.log(`Server running on port ${port}`)
+    })
 }
-
 connectDB().then(startServer);
