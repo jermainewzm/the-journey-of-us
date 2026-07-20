@@ -1,2 +1,3 @@
-this repo serves as a mini project combining skills learnt from IS113 and 
-some of the contents from IS216, which is dedicated to my gf.
+just a small little project which was made for my gf :) 
+just made used of basic CSS + vue.js combined with
+contents previously learnt from IS113
