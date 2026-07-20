@@ -2,7 +2,7 @@
 
 A full-stack journaling/memory-tracking web application built with Node.js, Express, MongoDB, and Vue.js, following an MVC architecture.
 
-🔗 **Live demo:** [Add your Render URL here]
+🔗 **Live demo:** https://the-journey-of-us.onrender.com/
 
 ## Features
 
