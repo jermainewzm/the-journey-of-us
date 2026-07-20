@@ -6,7 +6,7 @@ exports.showLanding = (req, res) => {
 }
 
 exports.showRegister = (req, res) => {
-    res.render("register")
+    res.render("register", { error: null })
 }
 
 exports.register = async (req, res) => {
