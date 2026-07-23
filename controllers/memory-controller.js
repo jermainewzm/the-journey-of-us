@@ -12,8 +12,9 @@ exports.addMemory = async (req, res) => {
         const imageUrl = req.body.imageUrl
 
         const dateObj = new Date(date)
-        const month = dateObj.getMonth() + 1
-        const year = dateObj.getFullYear()
+
+        const {month, year} = exports.getMonthYearFromDate(dateObj)
+        
 
         const memoryObj = { title, description, date: dateObj, month, year, imageUrl }
 
@@ -22,6 +23,13 @@ exports.addMemory = async (req, res) => {
     } catch (error) {
         console.error(error)
         res.status(500).json({ error: "Something went wrong, please try again" })
+    }
+}
+
+exports.getMonthYearFromDate = (date) => {
+    return {
+        month: date.getMonth() + 1,
+        year:  date.getFullYear()
     }
 }
 
