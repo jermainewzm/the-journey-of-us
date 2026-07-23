@@ -27,9 +27,10 @@ exports.addMemory = async (req, res) => {
 }
 
 exports.getMonthYearFromDate = (date) => {
+    const dateObj = new Date(date)
     return {
-        month: date.getMonth() + 1,
-        year:  date.getFullYear()
+        month: dateObj.getMonth() + 1,
+        year:  dateObj.getFullYear()
     }
 }
 
