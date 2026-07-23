@@ -73,6 +73,7 @@ This project follows the MVC (Model-View-Controller) pattern:
 - Building reactive front-end interfaces with Vue.js (v-for, v-model, computed properties)
 - Deploying a Node/Express app to production (Render) with environment variable management and MongoDB Atlas network configuration
 - Using Git branching and pull requests to manage feature development
+- Using GitHub Actions to automate tasks like testing
 
 ## Notes on Media
 
